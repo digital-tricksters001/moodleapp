@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { AfterViewInit, Component, OnInit, viewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, inject, viewChild } from '@angular/core';
 import { IonRouterOutlet, IonicModule } from '@ionic/angular';
 import { BackButtonEvent } from '@ionic/core';
 
@@ -42,8 +42,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     readonly outlet = viewChild.required(IonRouterOutlet);
 
     protected logger = CoreLogger.getInstance('AppComponent');
-
-    constructor(protected brandingService: CoreAdminBrandingService) {}
+    protected brandingService = inject(CoreAdminBrandingService);
 
     /**
      * @inheritdoc

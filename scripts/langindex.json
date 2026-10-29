@@ -2480,6 +2480,8 @@
   "core.serverconnection": "local_moodlemobileapp",
   "core.settings.about": "local_moodlemobileapp",
   "core.settings.accessstatement": "access",
+  "core.settings.administration": "local_moodlemobileapp",
+  "core.settings.adminoptions": "local_moodlemobileapp",
   "core.settings.appsettings": "local_moodlemobileapp",
   "core.settings.appversion": "local_moodlemobileapp",
   "core.settings.cannotsyncloggedout": "local_moodlemobileapp",

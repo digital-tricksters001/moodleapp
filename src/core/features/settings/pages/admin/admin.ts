@@ -1,4 +1,4 @@
-// (C) Copyright 2026 Developer: Suman Kumar Das (fysuman20@gmail.com)
+// (C) Copyright 2015 Moodle Pty Ltd.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CoreSites } from '@services/sites';
 import { CoreSite } from '@classes/sites/site';
 import { CoreSharedModule } from '@/core/shared.module';
@@ -42,6 +42,8 @@ export interface ColorPreset {
     ],
 })
 export default class CoreSettingsAdminPage implements OnInit {
+
+    protected brandingService = inject(CoreAdminBrandingService);
 
     site?: CoreSite;
     isAdmin = false;
@@ -73,8 +75,6 @@ export default class CoreSettingsAdminPage implements OnInit {
     // Diagnostic State
     pingStatus = '';
     pingLatency = 0;
-
-    constructor(protected brandingService: CoreAdminBrandingService) {}
 
     async ngOnInit(): Promise<void> {
         this.site = CoreSites.getCurrentSite();
@@ -123,7 +123,7 @@ export default class CoreSettingsAdminPage implements OnInit {
      * Generate CSS snippet for broadcasting to all students via Moodle server.
      */
     getGeneratedCSS(): string {
-        return `:root {\n` +
+        return ':root {\n' +
             `    --ion-color-primary: ${this.primaryColor};\n` +
             `    --brand-color: ${this.primaryColor};\n` +
             `    --core-bottom-tabs-color-selected: ${this.primaryColor};\n` +
@@ -131,7 +131,7 @@ export default class CoreSettingsAdminPage implements OnInit {
             `    --core-progressbar-color: ${this.primaryColor};\n` +
             `    --card-radius: ${this.borderRadius};\n` +
             `    --ion-card-radius: ${this.borderRadius};\n` +
-            `}`;
+            '}';
     }
 
     /**
@@ -151,6 +151,7 @@ export default class CoreSettingsAdminPage implements OnInit {
     copyLogoUrl(): void {
         if (!this.customLogoUrl) {
             CoreAlerts.showError('Please enter a custom Logo URL first.');
+
             return;
         }
 
@@ -192,6 +193,7 @@ export default class CoreSettingsAdminPage implements OnInit {
     async broadcastToServer(): Promise<void> {
         if (!this.site) {
             CoreAlerts.showError('No active connected Moodle site.');
+
             return;
         }
 
@@ -217,21 +219,20 @@ export default class CoreSettingsAdminPage implements OnInit {
 
                 await CoreAlerts.show({
                     header: 'Broadcast Successful',
-                    message: 'Your branding has been sent to the Moodle server! All students will receive this palette on their next sync.',
+                    message: 'Your branding has been sent to the Moodle server! All students will receive this palette.',
                 });
             } else {
-                // Easiest seamless workflow: Copy CSS to clipboard with 1-click instruction
                 this.copyGeneratedCSS();
                 await CoreAlerts.show({
                     header: 'Saved & Ready for Students',
-                    message: 'Branding is saved on your device!\n\nThe Mobile CSS has been copied to your clipboard. To apply it to ALL students, paste it into:\n\nSite administration > Mobile app > Mobile appearance > Custom mobile CSS.',
+                    message: 'Mobile CSS copied to clipboard!\n\nPaste into Site admin > Mobile app > Mobile appearance.',
                 });
             }
-        } catch (error) {
+        } catch {
             this.copyGeneratedCSS();
             await CoreAlerts.show({
                 header: 'Branding Saved Locally',
-                message: 'Saved on your device. The generated CSS for all students has been copied to your clipboard!\n\nPaste into: Site admin > Mobile app > Mobile appearance.',
+                message: 'Saved on your device. CSS copied to clipboard! Paste into Site admin > Mobile app > Mobile appearance.',
             });
         } finally {
             modal.dismiss();

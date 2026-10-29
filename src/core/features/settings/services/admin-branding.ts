@@ -1,4 +1,4 @@
-// (C) Copyright 2026 Developer: Suman Kumar Das (fysuman20@gmail.com)
+// (C) Copyright 2015 Moodle Pty Ltd.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
