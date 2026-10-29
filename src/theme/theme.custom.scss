@@ -1,0 +1,341 @@
+/*
+ * App Custom Theme SCSS
+ * ----------------------------------------------------------------------------
+ * Developer: Suman Kumar Das (fysuman20@gmail.com)
+ * Modernized UI/UX Design System Overhaul for Moodle App v5.2.1
+ * ----------------------------------------------------------------------------
+ */
+
+/*
+ * Modern Light Theme Tokens & Variables
+ * ----------------------------------------------------------------------------
+ */
+:root {
+    // Modern Typography Stack
+    --ion-font-family: -apple-system, BlinkMacSystemFont, "Plus Jakarta Sans", "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+
+    // Modern Elevation & Shadows
+    --shadow-soft-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.05), 0 1px 2px 0 rgba(15, 23, 42, 0.03);
+    --shadow-soft-md: 0 4px 16px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+    --shadow-soft-lg: 0 10px 25px -3px rgba(15, 23, 42, 0.08), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
+    --shadow-floating-nav: 0 12px 32px -4px rgba(15, 23, 42, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.06);
+
+    // Modern Border Radii Tokens
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --radius-pill: 9999px;
+
+    // Card System Overrides
+    --card-radius: var(--radius-lg);
+    --ion-card-radius: var(--radius-lg);
+    --core-courseimage-radius: 16px 16px 0 0;
+    --ion-card-border-color: rgba(226, 232, 240, 0.85);
+
+    // Modern Glassmorphic Header Toolbar
+    --core-header-toolbar-background: rgba(255, 255, 255, 0.88);
+    --core-header-toolbar-border-color: rgba(226, 232, 240, 0.8);
+    --core-header-toolbar-color: #0f172a;
+
+    // Modern Floating Bottom Tabs
+    --core-bottom-tabs-background: rgba(255, 255, 255, 0.92);
+    --core-bottom-tabs-color: #64748b;
+    --core-bottom-tabs-color-selected: var(--ion-color-primary, #4f46e5);
+    --core-bottom-tabs-border-color-active: var(--ion-color-primary, #4f46e5);
+    --core-bottom-tabs-badge-color: #ef4444;
+    --core-bottom-tabs-badge-text-color: #ffffff;
+
+    // Progress Rings & Bars
+    --core-progressbar-background: #e0e7ff;
+    --core-progressbar-color: #4f46e5;
+
+    // Login Experience Customization
+    --core-login-background: #f8fafc;
+    --core-login-text-color: #0f172a;
+    --core-login-input-background: #ffffff;
+    --core-login-input-color: #0f172a;
+}
+
+/*
+ * Modern Obsidian Dark Theme Tokens
+ * ----------------------------------------------------------------------------
+ */
+:root.dark {
+    // Deep Obsidian Dark Mode Palette
+    --background-color: #0b0f19;
+    --ion-background-color: #0b0f19;
+    --contrast-background: #151c2c;
+
+    // Dark Elevation Shadows
+    --shadow-soft-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+    --shadow-soft-md: 0 4px 16px -2px rgba(0, 0, 0, 0.45);
+    --shadow-soft-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.55);
+    --shadow-floating-nav: 0 12px 36px -4px rgba(0, 0, 0, 0.7);
+
+    // Dark Card Styles
+    --ion-card-border-color: rgba(51, 65, 85, 0.55);
+    --stroke: rgba(51, 65, 85, 0.55);
+    --ion-item-border-color: rgba(51, 65, 85, 0.5);
+
+    // Dark Glassmorphic Header Toolbar
+    --core-header-toolbar-background: rgba(11, 15, 25, 0.88);
+    --core-header-toolbar-border-color: rgba(51, 65, 85, 0.6);
+    --core-header-toolbar-color: #f8fafc;
+
+    // Dark Floating Bottom Tabs
+    --core-bottom-tabs-background: rgba(15, 23, 42, 0.92);
+    --core-bottom-tabs-color: #94a3b8;
+    --core-bottom-tabs-color-selected: #818cf8;
+    --core-bottom-tabs-border-color-active: #818cf8;
+
+    // Progress Bar Dark
+    --core-progressbar-background: rgba(79, 70, 229, 0.25);
+    --core-progressbar-color: #818cf8;
+
+    // Login Experience Dark
+    --core-login-background: #0b0f19;
+    --core-login-text-color: #f8fafc;
+    --core-login-input-background: #151c2c;
+    --core-login-input-color: #f8fafc;
+}
+
+/*
+ * Header Toolbar Glassmorphism & Micro-Styling
+ * ----------------------------------------------------------------------------
+ */
+ion-header {
+    ion-toolbar {
+        --background: var(--core-header-toolbar-background);
+        --border-color: var(--core-header-toolbar-border-color);
+        --color: var(--core-header-toolbar-color);
+        backdrop-filter: blur(16px) saturate(180%);
+        -webkit-backdrop-filter: blur(16px) saturate(180%);
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+
+        ion-title {
+            h1 {
+                font-weight: 700;
+                letter-spacing: -0.02em;
+                font-size: 1.15rem;
+            }
+        }
+    }
+}
+
+/*
+ * Floating Glassmorphic Bottom Navigation
+ * ----------------------------------------------------------------------------
+ */
+ion-tab-bar.mainmenu-tabs {
+    --background: var(--core-bottom-tabs-background);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    padding-bottom: max(var(--ion-safe-area-bottom, 0px), env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid var(--core-header-toolbar-border-color);
+    box-shadow: var(--shadow-floating-nav);
+    transition: background-color 0.3s ease;
+
+    ion-tab-button {
+        --color: var(--core-bottom-tabs-color);
+        --color-selected: var(--core-bottom-tabs-color-selected);
+        transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
+
+        .core-tab-icon {
+            font-size: 1.35rem;
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        ion-label {
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            margin-top: 3px;
+        }
+
+        &[aria-selected="true"],
+        &.tab-selected {
+            .core-tab-icon {
+                transform: translateY(-2px) scale(1.12);
+            }
+
+            ion-label {
+                font-weight: 700;
+            }
+        }
+
+        .core-tab-badge {
+            border-radius: var(--radius-pill);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 6px;
+            box-shadow: 0 2px 5px rgba(239, 68, 68, 0.35);
+        }
+    }
+}
+
+/*
+ * Modern Course Cards & List Items
+ * ----------------------------------------------------------------------------
+ */
+ion-card.core-course-list-card {
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft-md);
+    border: 1px solid var(--ion-card-border-color);
+    margin: 12px 16px;
+    overflow: hidden;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+
+    &:active {
+        transform: scale(0.985);
+    }
+
+    core-course-image.card-top {
+        border-radius: var(--core-courseimage-radius);
+        overflow: hidden;
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.15) 100%);
+            pointer-events: none;
+        }
+    }
+
+    .item-heading {
+        font-weight: 700;
+        font-size: 1.05rem;
+        line-height: 1.35;
+        letter-spacing: -0.015em;
+        margin-bottom: 6px;
+    }
+
+    // Category Chips
+    ion-chip.core-course-category {
+        border-radius: var(--radius-pill);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        padding: 2px 10px;
+        height: 24px;
+        background: rgba(79, 70, 229, 0.1);
+        color: var(--ion-color-primary, #4f46e5);
+    }
+
+    // Modern Progress Bar
+    core-progress-bar,
+    ion-progress-bar {
+        border-radius: var(--radius-pill);
+        height: 6px;
+        overflow: hidden;
+        background: var(--core-progressbar-background);
+
+        &::part(progress) {
+            background: linear-gradient(90deg, #4f46e5 0%, #818cf8 100%);
+            border-radius: var(--radius-pill);
+        }
+    }
+}
+
+/*
+ * Modernized Login & Authentication Flow
+ * ----------------------------------------------------------------------------
+ */
+.core-login-info-box {
+    margin-top: 16px;
+    margin-bottom: 24px;
+
+    .core-login-site {
+        core-site-logo {
+            filter: drop-shadow(0 4px 12px rgba(79, 70, 229, 0.15));
+        }
+
+        .core-siteurl {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            font-weight: 500;
+            margin-top: 6px;
+        }
+    }
+}
+
+.core-login-form {
+    background: var(--contrast-background);
+    border-radius: var(--radius-xl);
+    padding: 20px 16px;
+    box-shadow: var(--shadow-soft-lg);
+    border: 1px solid var(--ion-card-border-color);
+
+    ion-item {
+        --border-radius: var(--radius-md);
+        --border-width: 1px;
+        --border-color: var(--gray-300);
+        --background: var(--core-login-input-background);
+        --color: var(--core-login-input-color);
+        --highlight-height: 0;
+        margin-bottom: 14px;
+        border-radius: var(--radius-md);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+        &:focus-within {
+            --border-color: var(--ion-color-primary, #4f46e5);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.18);
+        }
+
+        ion-input {
+            font-size: 16px;
+        }
+    }
+
+    .core-login-login-button {
+        --border-radius: var(--radius-md);
+        --box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.38);
+        font-weight: 700;
+        font-size: 1rem;
+        letter-spacing: 0.02em;
+        height: 48px;
+        margin-top: 18px;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+        &:active {
+            transform: scale(0.98);
+        }
+    }
+}
+
+/*
+ * Modern UI Badges, Chips, and Buttons
+ * ----------------------------------------------------------------------------
+ */
+ion-button {
+    --border-radius: var(--radius-md);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+
+    &.button-round {
+        --border-radius: var(--radius-pill);
+    }
+}
+
+ion-badge {
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/*
+ * Skeleton Loading Shimmer Polish
+ * ----------------------------------------------------------------------------
+ */
+ion-skeleton-text {
+    border-radius: var(--radius-sm);
+    --border-radius: var(--radius-sm);
+}

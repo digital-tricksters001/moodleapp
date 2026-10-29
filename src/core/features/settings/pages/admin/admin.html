@@ -1,0 +1,270 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button [text]="'core.back' | translate" />
+        </ion-buttons>
+
+        <ion-title>
+            <h1>Administration & Branding</h1>
+        </ion-title>
+
+        <ion-buttons slot="end">
+            <ion-button fill="clear" (click)="copyDiagnostics()" aria-label="Copy Diagnostics">
+                <ion-icon slot="icon-only" name="fas-clipboard" aria-hidden="true" />
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding admin-content">
+    <div class="list-item-limited-width">
+
+        <!-- Developer Credit Banner -->
+        <ion-card class="admin-developer-banner">
+            <ion-card-content>
+                <div class="developer-info">
+                    <ion-icon name="fas-shield-halved" class="developer-shield" aria-hidden="true" />
+                    <div>
+                        <h2 class="developer-title">Moodle App v5.2.1 Pro Suite</h2>
+                        <p class="developer-name">Developed by <strong>Suman Kumar Das</strong></p>
+                        <p class="developer-email"><a href="mailto:fysuman20@gmail.com">fysuman20@gmail.com</a></p>
+                    </div>
+                </div>
+            </ion-card-content>
+        </ion-card>
+
+        <!-- SECTION 1: Dynamic Branding Studio -->
+        <ion-card class="admin-section-card">
+            <ion-card-header>
+                <ion-card-title>
+                    <ion-icon name="fas-palette" aria-hidden="true" />
+                    Branding & Visual Identity
+                </ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+                <!-- Live Mini Card Preview -->
+                <div class="branding-preview-box">
+                    <p class="preview-label">Live Theme Preview</p>
+                    <div class="mini-course-card" [style.border-radius]="borderRadius">
+                        <div class="mini-card-header" [style.background]="primaryColor">
+                            <span class="mini-card-badge">IN PROGRESS</span>
+                        </div>
+                        <div class="mini-card-body">
+                            <h4 class="mini-card-title">{{ customAppTitle || siteName || 'Modern Learning Course' }}</h4>
+                            <div class="mini-progress-track">
+                                <div class="mini-progress-fill" [style.background]="primaryColor" style="width: 70%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Primary Brand Color Swatches -->
+                <div class="swatches-group">
+                    <p class="setting-subheading">Primary Brand Color</p>
+                    <div class="swatches-row">
+                        @for (preset of colorPresets; track preset.hex) {
+                            <button type="button" class="swatch-button" [style.background-color]="preset.hex"
+                                [class.active]="primaryColor.toLowerCase() === preset.hex.toLowerCase()"
+                                (click)="selectColor(preset.hex)" [title]="preset.name">
+                                @if (primaryColor.toLowerCase() === preset.hex.toLowerCase()) {
+                                    <ion-icon name="fas-check" aria-hidden="true" />
+                                }
+                            </button>
+                        }
+                    </div>
+
+                    <!-- Custom Hex Input -->
+                    <ion-item lines="none" class="hex-input-item">
+                        <ion-input [(ngModel)]="primaryColor" (ionChange)="selectColor(primaryColor)"
+                            label="Custom Hex Code" labelPlacement="stacked" placeholder="#4f46e5" />
+                        <div class="hex-color-indicator" [style.background-color]="primaryColor" slot="end"></div>
+                    </ion-item>
+                </div>
+
+                <!-- Custom App Title -->
+                <ion-item lines="none" class="admin-input-item">
+                    <ion-input [(ngModel)]="customAppTitle" label="Custom Portal / App Title" labelPlacement="stacked"
+                        placeholder="e.g. Tattva LMS or Acme Academy" />
+                </ion-item>
+
+                <!-- Custom Logo URL -->
+                <ion-item lines="none" class="admin-input-item">
+                    <ion-input [(ngModel)]="customLogoUrl" label="Custom Logo URL" labelPlacement="stacked"
+                        placeholder="https://example.com/logo.png" />
+                </ion-item>
+
+                <!-- Corner Radius Selector -->
+                <div class="radius-selector-group">
+                    <p class="setting-subheading">Interface Corner Radius</p>
+                    <div class="radius-buttons-row">
+                        <ion-button size="small" [fill]="borderRadius === '8px' ? 'solid' : 'outline'"
+                            (click)="selectRadius('8px')">
+                            Compact (8px)
+                        </ion-button>
+                        <ion-button size="small" [fill]="borderRadius === '16px' ? 'solid' : 'outline'"
+                            (click)="selectRadius('16px')">
+                            Modern (16px)
+                        </ion-button>
+                        <ion-button size="small" [fill]="borderRadius === '24px' ? 'solid' : 'outline'"
+                            (click)="selectRadius('24px')">
+                            Smooth Pill (24px)
+                        </ion-button>
+                    </div>
+                </div>
+
+                <!-- Branding Action Buttons -->
+                <div class="admin-actions-row">
+                    <ion-button expand="block" (click)="broadcastToServer()" color="primary" class="broadcast-btn">
+                        <ion-icon slot="start" name="fas-cloud-arrow-up" aria-hidden="true" />
+                        Broadcast to All Students
+                    </ion-button>
+                    <ion-button expand="block" fill="outline" (click)="saveBranding()" class="save-branding-btn">
+                        <ion-icon slot="start" name="fas-floppy-disk" aria-hidden="true" />
+                        Save on This Device
+                    </ion-button>
+                    <ion-button expand="block" fill="clear" color="medium" (click)="resetBranding()" class="reset-btn">
+                        <ion-icon slot="start" name="fas-rotate-left" aria-hidden="true" />
+                        Reset Defaults
+                    </ion-button>
+                </div>
+            </ion-card-content>
+        </ion-card>
+
+        <!-- SECTION 2: Broadcast to All Students (Server Sync) -->
+        <ion-card class="admin-section-card broadcast-card">
+            <ion-card-header>
+                <ion-card-title>
+                    <ion-icon name="fas-tower-broadcast" color="primary" aria-hidden="true" />
+                    How Students Receive Changes
+                </ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+                <p class="broadcast-explainer">
+                    To deliver this exact color palette and logo to <strong>every student's installed Moodle app</strong>, use the easiest 1-click methods below:
+                </p>
+
+                <!-- Quick-Copy CSS Snippet for Moodle Server -->
+                <div class="css-snippet-box">
+                    <div class="snippet-header">
+                        <span class="snippet-title">Mobile CSS Snippet</span>
+                        <ion-button size="small" fill="outline" (click)="copyGeneratedCSS()">
+                            <ion-icon slot="start" name="fas-copy" aria-hidden="true" />
+                            Copy CSS
+                        </ion-button>
+                    </div>
+                    <pre class="snippet-code"><code>{{ getGeneratedCSS() }}</code></pre>
+                </div>
+
+                <ion-list lines="none" class="instructions-list">
+                    <ion-item class="instruction-item">
+                        <ion-badge slot="start" color="primary">1</ion-badge>
+                        <ion-label class="ion-text-wrap">
+                            <p class="item-heading">To Apply Colors to All Students:</p>
+                            <p>Click <strong>Copy CSS</strong> above, open your Moodle Admin Web &rarr; <em>Site administration &rarr; Mobile app &rarr; Mobile appearance</em> &rarr; Paste into <strong>Custom mobile CSS</strong>.</p>
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item class="instruction-item">
+                        <ion-badge slot="start" color="primary">2</ion-badge>
+                        <ion-label class="ion-text-wrap">
+                            <p class="item-heading">To Apply Logo to All Students:</p>
+                            <p>Open Moodle Admin Web &rarr; <em>Site administration &rarr; Appearance &rarr; Logos</em> &rarr; Upload your logo. The app automatically fetches it on next student launch.</p>
+                        </ion-label>
+                        @if (customLogoUrl) {
+                            <ion-button slot="end" size="small" fill="clear" (click)="copyLogoUrl()">
+                                <ion-icon slot="icon-only" name="fas-copy" aria-hidden="true" />
+                            </ion-button>
+                        }
+                    </ion-item>
+                </ion-list>
+            </ion-card-content>
+        </ion-card>
+
+        <!-- SECTION 3: Multi-Tenancy & Platform Hub -->
+        <ion-card class="admin-section-card">
+            <ion-card-header>
+                <ion-card-title>
+                    <ion-icon name="fas-network-wired" aria-hidden="true" />
+                    Multi-Tenancy & Platform Scope
+                </ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+                <ion-list lines="inset">
+                    <ion-item>
+                        <ion-label>Platform Architecture</ion-label>
+                        <ion-badge [color]="hasIomad ? 'success' : 'primary'" slot="end">
+                            {{ hasIomad ? 'Tattva LMS / IOMAD Multi-Tenant' : 'Moodle Core' }}
+                        </ion-badge>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label>Site Administrator</ion-label>
+                        <ion-badge [color]="isAdmin ? 'success' : 'medium'" slot="end">
+                            {{ isAdmin ? 'YES (Full Admin)' : 'Standard User' }}
+                        </ion-badge>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label>Manager Role Access</ion-label>
+                        <ion-badge [color]="isManager ? 'success' : 'medium'" slot="end">
+                            {{ isManager ? 'YES' : 'NO' }}
+                        </ion-badge>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label>Moodle Release</ion-label>
+                        <ion-note slot="end">{{ release || 'N/A' }}</ion-note>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label>Connected Site</ion-label>
+                        <ion-note slot="end" class="text-truncate">{{ siteUrl || 'None' }}</ion-note>
+                    </ion-item>
+                </ion-list>
+            </ion-card-content>
+        </ion-card>
+
+        <!-- SECTION 4: Admin Operations & Diagnostics -->
+        <ion-card class="admin-section-card">
+            <ion-card-header>
+                <ion-card-title>
+                    <ion-icon name="fas-screwdriver-wrench" aria-hidden="true" />
+                    Operations & Cache Controls
+                </ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+                <ion-item button (click)="purgeAllCaches()" [detail]="false" class="operation-item">
+                    <ion-icon slot="start" name="fas-trash-can" color="danger" aria-hidden="true" />
+                    <ion-label>
+                        <p class="item-heading">Purge All App & WS Caches</p>
+                        <p>Invalidate all local course data, schemas, and forced cache entries</p>
+                    </ion-label>
+                </ion-item>
+
+                <ion-item button (click)="pingWebService()" [detail]="false" class="operation-item">
+                    <ion-icon slot="start" name="fas-bolt" color="warning" aria-hidden="true" />
+                    <ion-label>
+                        <p class="item-heading">Test Web Service Latency</p>
+                        <p>{{ pingStatus || 'Ping core_webservice_get_site_info' }}</p>
+                    </ion-label>
+                    @if (pingLatency > 0) {
+                        <ion-badge color="success" slot="end">{{ pingLatency }}ms</ion-badge>
+                    }
+                </ion-item>
+
+                <ion-item button (click)="copyDiagnostics()" [detail]="false" class="operation-item">
+                    <ion-icon slot="start" name="fas-copy" color="primary" aria-hidden="true" />
+                    <ion-label>
+                        <p class="item-heading">Copy Diagnostic JSON</p>
+                        <p>Export device, user, token, and branding configuration</p>
+                    </ion-label>
+                </ion-item>
+            </ion-card-content>
+        </ion-card>
+
+    </div>
+</ion-content>

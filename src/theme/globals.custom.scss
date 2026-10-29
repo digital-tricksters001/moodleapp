@@ -1,0 +1,51 @@
+/*
+ * App Custom App Variables SCSS
+ * ----------------------------------------------------------------------------
+ * Developer: Suman Kumar Das (fysuman20@gmail.com)
+ * Modernized Design System Variables for Moodle App v5.2.1
+ * ----------------------------------------------------------------------------
+ */
+
+// Modern Refined Brand Color (Indigo / Violet modern ed-tech palette)
+$brand-color: #4f46e5 !default;
+
+// Crisp Modern Neutral Palette (Slate scale)
+$white:       #ffffff !default;
+$gray-100:    #f8fafc !default; // Page background tint
+$gray-200:    #f1f5f9 !default; // Border / subtle divider
+$gray-300:    #e2e8f0 !default; // Card stroke / light borders
+$gray-400:    #cbd5e1 !default;
+$gray-500:    #94a3b8 !default; // Input borders / subtle icons
+$gray-600:    #64748b !default; // Subdued secondary text
+$gray-700:    #334155 !default;
+$gray-800:    #1e293b !default; // Dark mode elevated cards
+$gray-900:    #0f172a !default; // Dark mode deep background / Crisp typography
+$black:       #020617 !default;
+
+// Refined Accent Colors
+$blue:        #2563eb !default;
+$cyan:        #06b6d4 !default;
+$green:       #10b981 !default;
+$red:         #ef4444 !default;
+$yellow:      #f59e0b !default;
+
+// Semantic Assignments
+$primary:      $brand-color !default;
+$primary-dark: #6366f1 !default;
+$secondary:    $gray-300 !default;
+$danger:       $red !default;
+$warning:      $yellow !default;
+$success:      $green !default;
+$info:         $blue !default;
+$light:        $gray-100 !default;
+$medium:       $gray-600 !default;
+$dark:         $gray-900 !default;
+
+// Modern vibrant palette for course card banners
+$core-course-image-background: #6366f1, #3b82f6, #06b6d4, #10b981, #8b5cf6, #ec4899, #f59e0b, #14b8a6, #64748b !default;
+
+// Enhanced Login & Onboarding configuration
+$core-login-button-outline: false !default;
+$core-login-hide-forgot-password: false !default;
+$core-login-hide-need-help: false !default;
+$core-login-hide-qrcode: false !default;

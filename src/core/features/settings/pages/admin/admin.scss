@@ -1,0 +1,328 @@
+/*
+ * Administration & Branding Hub Styles
+ * ----------------------------------------------------------------------------
+ * Developer: Suman Kumar Das (fysuman20@gmail.com)
+ * Moodle App v5.2.1
+ * ----------------------------------------------------------------------------
+ */
+
+@use "theme/globals" as *;
+
+.admin-content {
+    --background: var(--background-color);
+
+    .admin-developer-banner {
+        border-radius: var(--radius-lg, 16px);
+        background: linear-gradient(135deg, rgba(79, 70, 229, 0.12) 0%, rgba(129, 140, 248, 0.05) 100%);
+        border: 1px solid rgba(79, 70, 229, 0.25);
+        margin-bottom: 20px;
+
+        .developer-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+
+            .developer-shield {
+                font-size: 2.2rem;
+                color: var(--ion-color-primary, #4f46e5);
+            }
+
+            .developer-title {
+                font-size: 1.15rem;
+                font-weight: 700;
+                margin: 0 0 4px 0;
+                letter-spacing: -0.02em;
+            }
+
+            .developer-name {
+                font-size: 0.9rem;
+                margin: 0;
+                color: var(--text-color);
+            }
+
+            .developer-email {
+                font-size: 0.82rem;
+                margin: 2px 0 0 0;
+                a {
+                    color: var(--ion-color-primary, #4f46e5);
+                    text-decoration: none;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+
+    .admin-section-card {
+        border-radius: var(--radius-lg, 16px);
+        border: 1px solid var(--ion-card-border-color);
+        box-shadow: var(--shadow-soft-md);
+        margin-bottom: 20px;
+
+        ion-card-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.05rem;
+            font-weight: 700;
+
+            ion-icon {
+                color: var(--ion-color-primary, #4f46e5);
+            }
+        }
+    }
+
+    .branding-preview-box {
+        background: var(--ion-background-color-step-50, #f8fafc);
+        border: 1px dashed var(--gray-300);
+        border-radius: var(--radius-md, 12px);
+        padding: 14px;
+        margin-bottom: 20px;
+
+        .preview-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: var(--gray-600);
+            margin: 0 0 10px 0;
+        }
+
+        .mini-course-card {
+            background: var(--contrast-background, #ffffff);
+            border: 1px solid var(--ion-card-border-color);
+            box-shadow: var(--shadow-soft-sm);
+            overflow: hidden;
+
+            .mini-card-header {
+                height: 50px;
+                display: flex;
+                align-items: flex-start;
+                justify-content: flex-end;
+                padding: 8px;
+                transition: background-color 0.25s ease;
+
+                .mini-card-badge {
+                    background: rgba(0, 0, 0, 0.4);
+                    color: #ffffff;
+                    font-size: 9px;
+                    font-weight: 700;
+                    padding: 2px 6px;
+                    border-radius: 4px;
+                }
+            }
+
+            .mini-card-body {
+                padding: 12px;
+
+                .mini-card-title {
+                    margin: 0 0 10px 0;
+                    font-size: 0.9rem;
+                    font-weight: 700;
+                }
+
+                .mini-progress-track {
+                    height: 5px;
+                    background: var(--gray-200);
+                    border-radius: 9999px;
+                    overflow: hidden;
+
+                    .mini-progress-fill {
+                        height: 100%;
+                        border-radius: 9999px;
+                        transition: background-color 0.25s ease;
+                    }
+                }
+            }
+        }
+    }
+
+    .swatches-group {
+        margin-bottom: 18px;
+
+        .setting-subheading {
+            font-weight: 600;
+            font-size: 0.88rem;
+            margin: 0 0 10px 0;
+        }
+
+        .swatches-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+
+            .swatch-button {
+                width: 38px;
+                height: 38px;
+                border-radius: 50%;
+                border: 2px solid #ffffff;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #ffffff;
+                font-size: 14px;
+                transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+
+                &.active {
+                    transform: scale(1.15);
+                    box-shadow: 0 0 0 3px var(--ion-color-primary, #4f46e5);
+                }
+            }
+        }
+
+        .hex-input-item {
+            --background: var(--ion-background-color-step-50, #f8fafc);
+            border-radius: var(--radius-sm, 8px);
+            margin-top: 8px;
+
+            .hex-color-indicator {
+                width: 28px;
+                height: 28px;
+                border-radius: 6px;
+                border: 1px solid var(--gray-300);
+            }
+        }
+    }
+
+    .admin-input-item {
+        --background: var(--ion-background-color-step-50, #f8fafc);
+        border-radius: var(--radius-sm, 8px);
+        margin-bottom: 12px;
+    }
+
+    .radius-selector-group {
+        margin-top: 16px;
+        margin-bottom: 20px;
+
+        .setting-subheading {
+            font-weight: 600;
+            font-size: 0.88rem;
+            margin: 0 0 8px 0;
+        }
+
+        .radius-buttons-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+    }
+
+    .admin-actions-row {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .broadcast-btn {
+            --border-radius: var(--radius-md, 12px);
+            font-weight: 700;
+            --box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.35);
+        }
+
+        .save-branding-btn {
+            --border-radius: var(--radius-md, 12px);
+            font-weight: 700;
+        }
+
+        .reset-btn {
+            --border-radius: var(--radius-md, 12px);
+        }
+    }
+
+    .broadcast-card {
+        .broadcast-explainer {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .css-snippet-box {
+            background: var(--ion-background-color-step-100, #f1f5f9);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-md, 12px);
+            padding: 12px;
+            margin-bottom: 16px;
+
+            .snippet-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 8px;
+
+                .snippet-title {
+                    font-size: 0.75rem;
+                    text-transform: uppercase;
+                    font-weight: 700;
+                    letter-spacing: 0.05em;
+                    color: var(--gray-600);
+                }
+            }
+
+            .snippet-code {
+                margin: 0;
+                padding: 10px;
+                background: var(--gray-900, #0f172a);
+                color: #38bdf8;
+                border-radius: var(--radius-sm, 8px);
+                font-family: var(--mdl-typography-monospace-font);
+                font-size: 0.8rem;
+                line-height: 1.4;
+                overflow-x: auto;
+                white-space: pre;
+            }
+        }
+
+        .instructions-list {
+            background: transparent;
+
+            .instruction-item {
+                --background: transparent;
+                --padding-start: 0;
+                margin-bottom: 10px;
+
+                ion-badge {
+                    margin-inline-end: 12px;
+                    border-radius: 50%;
+                    width: 24px;
+                    height: 24px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 11px;
+                }
+
+                p.item-heading {
+                    font-weight: 700;
+                    font-size: 0.9rem;
+                    margin-bottom: 2px;
+                }
+
+                p {
+                    font-size: 0.82rem;
+                    color: var(--gray-600);
+                    line-height: 1.4;
+                }
+            }
+        }
+    }
+
+    .operation-item {
+        --padding-start: 0;
+        cursor: pointer;
+        margin-bottom: 6px;
+    }
+
+    .text-truncate {
+        max-width: 180px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
